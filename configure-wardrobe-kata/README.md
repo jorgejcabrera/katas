@@ -1,27 +1,21 @@
-https://kata-log.rocks/configure-wardrobe-kata
+https://kata-log.rocks/banking-kata
 
-### Configure your own Wardrobe
+### Your Task
 
-Imagine you have just moved into your new apartment, and then you notice that you still need a new wardrobe for your
-dressing room. Regrettably, you won’t find a wardrobe that fits exactly to the size of your wall. But fortunately, the
-Swedish furniture dealer of your choice offers you the opportunity to build your own, customized wardrobe by combining
-individual wardrobe elements.
+Your bank is tired of its mainframe COBOL accounting software and they hired both of you for a greenfield project in -
+what a happy coincidence
 
-The wardrobe elements are available in the following sizes: 50cm, 75cm, 100cm, and 120cm. The wall on which the wardrobe
-elements are placed has a total length of 250cm. With which combinations of wardrobe elements can you make the most of
-the space?
+- your favorite programming language!
 
-Write a function that returns all combinations of wardrobe elements that exactly fill the wall.
+Your task is to show them that your TDD-fu and your new-age programming language can cope with good ole’ COBOL!
 
-### Additional Task
+### Requirements
 
-Here is the price list for the available wardrobe elements:
+Write a class Account that offers the following methods void deposit(int) void withdraw(int) String printStatement()
 
-```
-50cm => 59 USD
-75cm => 62 USD
-100cm => 90 USD
-120cm => 111 USD
-```
+An example statement would be:
 
-Write a second function that checks which of the resulting combinations is the cheapest on
+| Date       | Amount | Balance |
+|------------|--------|---------|
+| 24.12.2015 | +500   | 500     |
+| 23.8.2016  | -100   | 400     |
