@@ -44,6 +44,15 @@ class AccountTest : BehaviorSpec({
                 ex.message shouldBe "There isn't enough money. Please try with a low amount."
             }
         }
+
+        When("someone try to withdraw  -1000 usd") {
+            Then("it must fail") {
+                val ex = shouldThrow<RuntimeException> {
+                    account.withdraw(-1000)
+                }
+                ex.message shouldBe "Withdrawal amount must be positive."
+            }
+        }
     }
 
 })
