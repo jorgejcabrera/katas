@@ -3,12 +3,12 @@ package org.katas
 import java.time.LocalDate
 
 interface Movements {
-    fun balance(): Int
+    fun balanceChange(): Int
 }
 
 sealed class Transaction(val amount: Int, val date: LocalDate = LocalDate.now()) : Movements {
     class Deposit(amount: Int) : Transaction(amount = amount) {
-        override fun balance(): Int {
+        override fun balanceChange(): Int {
             return this.amount
         }
     }
@@ -17,7 +17,7 @@ sealed class Transaction(val amount: Int, val date: LocalDate = LocalDate.now())
         init {
             require(amount > 0) { "Withdrawal amount must be positive." }
         }
-        override fun balance(): Int {
+        override fun balanceChange(): Int {
             return -this.amount
         }
     }
@@ -31,7 +31,7 @@ class Account(
     }
 
     fun balance(): Int {
-        return this.transactions.sumOf { it.balance() }
+        return this.transactions.sumOf { it.balanceChange() }
     }
 
     fun withdraw(amount: Int) {
