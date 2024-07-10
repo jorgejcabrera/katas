@@ -1,14 +1,51 @@
-.gradle
-/build/
+# Sistema de compilación
+.gradle/
+build/
 
-# Ignore Gradle GUI config
-gradle-app.setting
+# Directorios de salida
+out/
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+# Archivos de configuración de la IDE
+.idea/
+*.iml
+*.ipr
+*.iws
 
-# Cache of project
-.gradletasknamecache
+# Gradle Wrapper
+gradle-wrapper.jar
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+# Archivos temporales
+*.log
+*.tmp
+*.tmp.*
+
+# Archivos específicos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de paquete
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Archivos binarios de resultados de pruebas
+*.bin
+*.xml
+*.idx
+
+# Archivos temporales de extracción de pruebas
+jar_extract_*
+
+# Archivos de configuración de Kotlin
+*.kotlin_module
+
+# Otros archivos específicos de Gradle
+*.keystream
+*.len
+*.values.at
+*.tab_i
+*.tab
