@@ -18,6 +18,7 @@ class AccountTest : BehaviorSpec({
 
         When("someone deposit a specific amount of money") {
             account.deposit(100)
+            account.printStatement()
 
             Then("the balance should be the expected") {
                 account.balance() shouldBe 100
@@ -27,15 +28,28 @@ class AccountTest : BehaviorSpec({
         When("someone deposit 1000 usd and then withdraw just 500") {
             account.deposit(1000)
             account.withdraw(500)
+            account.printStatement()
 
             Then("the balance should be the expected") {
                 account.balance() shouldBe 500
             }
         }
 
+        When("someone deposit 100, 200 and finally 600 usd and then withdraw just 500") {
+            account.deposit(100)
+            account.deposit(200)
+            account.deposit(600)
+            account.withdraw(500)
+            account.printStatement()
+
+            Then("the balance should be the expected") {
+                account.balance() shouldBe 400
+            }
+        }
+
         When("someone deposit 1000 usd") {
             account.deposit(1000)
-
+            account.printStatement()
 
             Then("when we withdraw 1500 it must fail") {
                 val ex = shouldThrow<RuntimeException> {
