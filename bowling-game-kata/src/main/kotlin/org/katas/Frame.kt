@@ -9,18 +9,12 @@ data class Frame(
 
     fun score(): Int {
         var score = baseScore()
-        if (BowlingScore.Strike.match(this)) {
-            score += strikeBonus()
-        } else if (BowlingScore.Spare.match(this)) {
-            score += spareBonus()
+        if (BowlingSpecialScore.Strike.match(this)) {
+            score += BowlingSpecialScore.Strike.bonus(this)
+        } else if (BowlingSpecialScore.Spare.match(this)) {
+            score += BowlingSpecialScore.Spare.bonus(this)
         }
         return score
     }
-
-    private fun strikeBonus(): Int = nextFrame?.firstRoll?.let { first ->
-        nextFrame?.secondRoll?.let { second -> first + second } ?: nextFrame?.nextFrame?.firstRoll ?: 0
-    } ?: 0
-
-    private fun spareBonus(): Int = nextFrame?.firstRoll ?: 0
 }
 

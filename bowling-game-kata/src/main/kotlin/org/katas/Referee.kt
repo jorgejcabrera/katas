@@ -52,6 +52,7 @@ data class BowlingReferee constructor(
     }
 }
 
+//TODO test me!
 object BowlingScoreCalculator {
     fun calculate(frame: Frame): Int {
         fun recursiveScore(currentFrame: Frame?): Int {

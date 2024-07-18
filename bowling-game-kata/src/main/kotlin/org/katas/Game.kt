@@ -40,22 +40,3 @@ class Bowling(
     }
 }
 
-interface FrameScore {
-    fun match(frame: Frame): Boolean
-}
-
-sealed class BowlingScore : FrameScore {
-
-    object Strike : BowlingScore() {
-        override fun match(frame: Frame): Boolean {
-            return frame.firstRoll == MAX_AMOUNT_OF_PINS_RULE
-        }
-    }
-
-    object Spare : BowlingScore() {
-        override fun match(frame: Frame): Boolean {
-            return frame.firstRoll < MAX_AMOUNT_OF_PINS_RULE && frame.secondRoll != null && (frame.firstRoll + frame.secondRoll!! == MAX_AMOUNT_OF_PINS_RULE)
-        }
-
-    }
-}
