@@ -1,10 +1,5 @@
 package org.katas
 
-data class Frame(
-    var firstRoll: Int,
-    var secondRoll: Int? = null,
-    var nextFrame: Frame? = null
-)
 
 interface Referee<T : Game> {
     fun game(): T
@@ -16,7 +11,7 @@ interface Referee<T : Game> {
 
 data class BowlingReferee constructor(
     private val players: MutableList<Player> = mutableListOf(),
-    private val framesByPlayer: MutableMap<Player, MutableList<Frame>> = mutableMapOf(),
+    private val framesByPlayer: MutableMap<Player, Frame> = mutableMapOf(),
     private val game: Bowling,
 ) : Referee<Bowling> {
 
@@ -35,9 +30,9 @@ data class BowlingReferee constructor(
 
     override fun process(player: Player, frame: Frame) {
         if (this.framesByPlayer.containsKey(player)) {
-            this.framesByPlayer[player]?.last()?.nextFrame = frame
+            this.framesByPlayer[player]?.nextFrame = frame
         } else {
-            this.framesByPlayer[player] = mutableListOf(frame)
+            this.framesByPlayer[player] = frame
         }
     }
 
@@ -45,13 +40,28 @@ data class BowlingReferee constructor(
         return game.availablePins() == 0
     }
 
-    // TODO FIX ME!
     override fun score(player: Player): Int {
-        return framesByPlayer.getOrDefault(player, mutableListOf())
-            .sumOf { frame -> frame.firstRoll }
+        val firstFrame =
+            framesByPlayer[player] ?: throw IllegalArgumentException("No frames found for the specified player.")
+
+        return BowlingScoreCalculator.calculate(firstFrame)
     }
 
     fun clear() {
         framesByPlayer.clear()
+    }
+}
+
+object BowlingScoreCalculator {
+    fun calculate(frame: Frame): Int {
+        fun recursiveScore(currentFrame: Frame?): Int {
+            return if (currentFrame != null) {
+                currentFrame.score() + recursiveScore(currentFrame.nextFrame)
+            } else {
+                0
+            }
+        }
+
+        return recursiveScore(frame)
     }
 }

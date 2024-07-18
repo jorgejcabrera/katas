@@ -1,5 +1,6 @@
 package org.katas
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.shouldBe
@@ -38,6 +39,15 @@ class BowlingGameTest : BehaviorSpec({
                 match.game().availablePins() shouldBe 10
                 match.referee().score(jorge) shouldBeGreaterThanOrEqual 0
                 match.referee().score(flor) shouldBeGreaterThanOrEqual 0
+            }
+        }
+
+        When("there is an unregistered player") {
+            val karu = Player("Karen")
+            val ex = shouldThrow<IllegalArgumentException> { match.referee().score(karu) }
+
+            Then("must not be an associated score") {
+                ex.message shouldBe "No frames found for the specified player."
             }
         }
     }
