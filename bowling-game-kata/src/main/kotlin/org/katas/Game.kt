@@ -10,11 +10,6 @@ interface Game {
     fun roll(knockedPins: Int)
 
     /**
-     * Returns the total score for that game.
-     */
-    fun score(): Int
-
-    /**
      * Reset all the changes after a player roll
      */
     fun reset()
@@ -25,10 +20,6 @@ class Bowling(
 ) : Game {
     override fun roll(knockedPins: Int) {
         this.pins -= knockedPins
-    }
-
-    override fun score(): Int {
-        TODO("Not yet implemented")
     }
 
     override fun reset() {
