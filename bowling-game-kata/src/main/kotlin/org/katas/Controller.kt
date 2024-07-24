@@ -2,14 +2,14 @@ package org.katas
 
 import kotlin.random.Random
 
-interface GameExecutor {
+interface Controller {
     fun executeRoll(player: Player)
 }
 
-class BowlingExecutor(
+class BowlingController(
     private val game: Game,
     private val referee: Referee<Bowling>
-) : GameExecutor {
+) : Controller {
     override fun executeRoll(player: Player) {
         val firstKnockedPins = rollResult()
         game.roll(firstKnockedPins)

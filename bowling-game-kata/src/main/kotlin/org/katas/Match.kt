@@ -36,9 +36,9 @@ class BowlingMatch(
         fun start(): BowlingMatch {
             val game = Bowling()
             val referee = BowlingReferee(players = this.players, game = game)
-            val executor = BowlingExecutor(game = game, referee = referee)
+            val executor = BowlingController(game = game, referee = referee)
             this.players.forEach {
-                it.gameExecutor = executor
+                it.controller = executor
             }
             return BowlingMatch(players, referee, game)
         }

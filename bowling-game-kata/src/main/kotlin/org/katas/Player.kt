@@ -2,10 +2,10 @@ package org.katas
 
 data class Player(
     val name: String,
-    internal var gameExecutor: GameExecutor? = null
+    internal var controller: Controller? = null
 ) {
 
     fun play() {
-        gameExecutor?.executeRoll(this)
+        controller?.executeRoll(this)
     }
 }
